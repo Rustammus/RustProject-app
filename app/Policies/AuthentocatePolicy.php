@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class AdminPolicy
+class AuthentocatePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -20,13 +20,9 @@ class AdminPolicy
      */
     public function view(User $user, User $model): bool
     {
-        return $model->userType === 'admin';
+        //
     }
-    public function manager(User $user, User $model): bool
-    {
-        $isOK = (($model->userType === 'admin') or ($model->userType === 'manager'));
-        return $isOK;
-    }
+
     /**
      * Determine whether the user can create models.
      */

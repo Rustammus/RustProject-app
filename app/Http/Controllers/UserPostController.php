@@ -34,7 +34,6 @@ class UserPostController extends Controller
         }
 
         $posts = $query->get();
-        dd($posts);
         $nofilter = false;
         //$posts->add(['nofilter' => $nofilter]);
         return view('userPost.index', compact('posts', 'nofilter'));
@@ -42,13 +41,12 @@ class UserPostController extends Controller
 
     public function create(): View
     {
-        return view('adminPost.create');
+        return view('userPost.create');
     }
 
     public function store(): \Illuminate\Http\RedirectResponse
     {
         $postData = request()->validate([
-           'load_by' => 'required',
            'type' => 'required',
            'heading' => 'required',
            'description' => 'required',
@@ -57,8 +55,9 @@ class UserPostController extends Controller
            'city' => 'required',
            'address' => 'required'
         ]);
+        $postData['load_by'] = auth()->user()->name;
         Post::create($postData);
-        return redirect()->route('admin.post.index');
+        return redirect()->route('main.index');
     }
 
     public function show(Post $post)

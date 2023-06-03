@@ -8,7 +8,15 @@
                 <input type="text" name="city" class="form-control" placeholder="Город" aria-label="First name">
             </div>
             <div class="col mt-1">
-                <input type="text" name="type" class="form-control" placeholder="Тип мероприятия" aria-label="Last name">
+                <select class="form-select mb-3" name="type" id="type">
+                    <option value="" selected>Укажите тип мероприятия</option>
+                    <option value="Концерт">Концерт</option>
+                    <option value="Театр">Театр</option>
+                    <option value="Фестиваль">Фестиваль</option>
+                    <option value="Экскурсия">Экскурсия</option>
+                    <option value="Стендап">Стендап</option>
+                    <option value="Выставка">Выставка</option>
+                </select>
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Поиск</button>
@@ -16,8 +24,9 @@
     @foreach($posts as $post)
     <div class="container justify-content-center" style="max-width: 80%">
         <div class="card text-bg-secondary mt-5">
-            <div class="card-header">
+            <div class="card-header justify-content-between">
                 {{$post->type}}
+                {{$post->city}}
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{$post->heading}}</h5>

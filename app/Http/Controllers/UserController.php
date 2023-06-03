@@ -22,20 +22,15 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('adminPost.edit', compact('user'));
+        return view('adminUser.edit', compact('user'));
     }
 
     public function update(User $user)
     {
         $userData = request()->validate([
-            'load_by' => 'required',
-            'type' => 'required',
-            'heading' => 'required',
-            'description' => 'required',
-            'price' => 'required',
-            'can_pay_pushkin' => 'nullable',
-            'city' => 'required',
-            'address' => 'required'
+            'userType' => '',
+            'name' => '',
+            'email' => ''
         ]);
         //if(!array_key_exists('can_pay_pushkin', $postData)) $postData['can_pay_pushkin'] = false;
         $user->update($userData);

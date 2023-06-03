@@ -12,7 +12,7 @@ class ManagerPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -20,7 +20,8 @@ class ManagerPolicy
      */
     public function view(User $user, User $model): bool
     {
-        return $model->userType === 'manager';
+
+        return true;
     }
 
     /**
