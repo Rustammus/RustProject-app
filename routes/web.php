@@ -29,12 +29,22 @@ Route::group(['namespace' => 'AdminUser', 'middleware' => ['auth','admin']], fun
     Route::get('/admin/user/{user}/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name("admin.user.edit");
     Route::patch('/admin/user/{user}', [\App\Http\Controllers\UserController::class, 'update'])->name("admin.user.update");
     Route::delete('/admin/user/{user}', [\App\Http\Controllers\UserController::class, 'destroy'])->name("admin.user.destroy");
+    Route::get('/admin/user/{user}/post', [\App\Http\Controllers\UserController::class, 'showPosts'])->name("admin.user.showPosts");
 });
 
 Route::get('/main/post/create', [\App\Http\Controllers\UserPostController::class, 'create'])->middleware(['auth', 'manager'])->name('main.post.create');
 Route::get('/main/post', [\App\Http\Controllers\UserPostController::class, 'index'])->name('main.index');
 Route::post('/main/post', [\App\Http\Controllers\UserPostController::class, 'store'])->middleware(['auth', 'manager'])->name('main.post.store');
+Route::get('/main/post/{post}', [\App\Http\Controllers\UserPostController::class, 'show'])->name("main.post.show");
 Route::post('/main/post/filter', [\App\Http\Controllers\UserPostController::class, 'filter'])->name('main.filter');
+Route::post('/main/postUser/{post}', [\App\Http\Controllers\PostUserTableController::class, 'store'])->middleware(['auth'])->name("main.postUser.store");
+Route::get('/main/postUser', [\App\Http\Controllers\PostUserTableController::class, 'index'])->middleware(['auth'])->name("main.postUser.index");
+
+// Api
+Route::get('api/post', [\App\Http\Controllers\Api\UserPostController::class, 'index'])->name('api.posts.index');
+Route::get('api/post/{post}', [\App\Http\Controllers\Api\UserPostController::class, 'show'])->name('api.posts.show');
+
+
 //Route::get("/home", [\App\Http\Controllers\HomeController::class, "index"]);
 Route::get('/main', [\App\Http\Controllers\MainController::class, 'index'])->name('main');
 Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('main');

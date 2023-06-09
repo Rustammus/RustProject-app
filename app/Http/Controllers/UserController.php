@@ -9,6 +9,7 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
+
     public function index(): View
     {
         $users = User::paginate(10);
@@ -41,5 +42,10 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('admin.user.index');
+    }
+
+    public function showPosts(User $user) {
+        $posts = $user->posts()->paginate(10);
+        return view('adminPost.index', compact('posts'));
     }
 }

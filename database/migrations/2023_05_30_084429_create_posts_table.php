@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string("load_by");
+            $table->unsignedBigInteger("author_id");
             $table->string("type");
             $table->string("heading");
             $table->text("description");
@@ -23,6 +24,9 @@ return new class extends Migration
             $table->string('address');
             $table->timestamp("launch_date")->nullable();
             $table->timestamps();
+
+            $table->index("author_id", "post_user_idx");
+            $table->foreign("author_id", "post_user_fk")->on("users")->references("id");
         });
     }
 

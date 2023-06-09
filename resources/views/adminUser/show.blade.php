@@ -36,6 +36,10 @@
                         <th scope="row">Редактированн</th>
                         <td>{{$user->updated_at}}</td>
                     </tr>
+                    <tr>
+                        <th scope="row">Постов</th>
+                        <th><a href="{{route('admin.user.showPosts', $user->id)}}">{{$user->postsCount()}}</a></th>
+                    </tr>
                     </tbody>
                 </table>
             </div>

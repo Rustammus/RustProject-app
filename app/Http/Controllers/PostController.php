@@ -8,6 +8,9 @@ use Illuminate\View\View;
 
 class PostController extends Controller
 {
+
+
+
     public function index(): View
     {
         $posts = Post::paginate(10);
@@ -31,6 +34,7 @@ class PostController extends Controller
            'city' => 'required',
            'address' => 'required'
         ]);
+        $postData['author_id'] = auth()->user()->id;
         Post::create($postData);
         return redirect()->route('admin.post.index');
     }

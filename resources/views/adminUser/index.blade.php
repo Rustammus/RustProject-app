@@ -11,6 +11,7 @@
                             <th>Имя</th>
                             <th>Почта</th>
                             <th>Создан</th>
+                            <th>Постов</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -21,6 +22,7 @@
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->created_at}}</td>
+                                <th><a href="{{route('admin.user.showPosts', $user->id)}}">{{$user->postsCount()}}</a></th>
                             </tr>
                         @endforeach
                     </tbody>

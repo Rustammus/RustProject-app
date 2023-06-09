@@ -15,7 +15,7 @@
                     <a class="nav-link active" aria-current="page" href="{{route('main.index')}}">Мероприятия</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Запланированные</a>
+                    <a class="nav-link" href="{{route('main.postUser.index')}}">Запланированные</a>
                 </li>
                 @can('manager', auth()->user())
                 <li class="nav-item">

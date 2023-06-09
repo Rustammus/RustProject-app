@@ -10,10 +10,9 @@ class UserPostController extends Controller
 {
     public function index(): View
     {
-        $posts = Post::paginate(10);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         $nofilter = true;
-        //$posts->add(['nofilter' => $nofilter]);
-        return view('userPost.index', compact('posts', 'nofilter'));
+        return view('userPost.index', compact('posts'));
     }
 
     public function filter()
@@ -33,10 +32,9 @@ class UserPostController extends Controller
             $query->where('city', $postData['city']);
         }
 
-        $posts = $query->get();
-        $nofilter = false;
+        $posts = $query->get()->reverse()->paginate(10);
         //$posts->add(['nofilter' => $nofilter]);
-        return view('userPost.index', compact('posts', 'nofilter'));
+        return view('userPost.index', compact('posts'));
     }
 
     public function create(): View
@@ -56,13 +54,14 @@ class UserPostController extends Controller
            'address' => 'required'
         ]);
         $postData['load_by'] = auth()->user()->name;
+        $postData['author_id'] = auth()->user()->id;
         Post::create($postData);
         return redirect()->route('main.index');
     }
 
     public function show(Post $post)
     {
-        return view('adminPost.show', compact('post'));
+        return view('userPost.show', compact('post'));
     }
 
     public function edit(Post $post)

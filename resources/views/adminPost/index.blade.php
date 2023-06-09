@@ -8,7 +8,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Загруженно</th>
+                            <th>Автор</th>
                             <th>Тип</th>
                             <th>Заголовок</th>
                             <th>Описание</th>
@@ -22,7 +22,7 @@
                         @foreach($posts as $post)
                             <tr>
                                 <th><a href="{{route('admin.post.show', $post->id)}}">{{$post->id}}</a></th>
-                                <td>{{$post->load_by}}</td>
+                                <td><a href="{{route('admin.user.show', $post->author_id)}}">{{$post->user->name}}</a></td>
                                 <td>{{$post->type}}</td>
                                 <td>{{$post->heading}}</td>
                                 <td>{{$post->description}}</td>
