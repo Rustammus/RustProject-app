@@ -33,9 +33,8 @@ class UserPostController extends Controller
             $query->where('city', $postData['city']);
         }
 
-        $posts = $query->get()->reverse()->paginate(10);
-        //$posts->add(['nofilter' => $nofilter]);
-        return view('userPost.index', compact('posts'));
+        $posts = $query->get()->reverse();
+        return PostResource::collection($posts);
     }
 
 

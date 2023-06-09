@@ -41,8 +41,9 @@ Route::post('/main/postUser/{post}', [\App\Http\Controllers\PostUserTableControl
 Route::get('/main/postUser', [\App\Http\Controllers\PostUserTableController::class, 'index'])->middleware(['auth'])->name("main.postUser.index");
 
 // Api
-Route::get('api/post', [\App\Http\Controllers\Api\UserPostController::class, 'index'])->name('api.posts.index');
-Route::get('api/post/{post}', [\App\Http\Controllers\Api\UserPostController::class, 'show'])->name('api.posts.show');
+Route::get('/api/post', [\App\Http\Controllers\Api\UserPostController::class, 'index'])->name('api.posts.index');
+Route::post('/api/post/filter', [\App\Http\Controllers\Api\UserPostController::class, 'filter'])->name('api.posts.filter');
+Route::get('/api/post/{post}', [\App\Http\Controllers\Api\UserPostController::class, 'show'])->name('api.posts.show');
 
 
 //Route::get("/home", [\App\Http\Controllers\HomeController::class, "index"]);

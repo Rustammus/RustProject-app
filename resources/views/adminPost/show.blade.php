@@ -14,7 +14,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Загруженно</th>
+                            <th>Автор</th>
                             <th>Тип</th>
                             <th>Заголовок</th>
                             <th>Описание</th>
@@ -27,7 +27,7 @@
                     <tbody>
                             <tr>
                                 <th>{{$post->id}}</th>
-                                <td>{{$post->load_by}}</td>
+                                <td><a href="{{route('admin.user.show', $post->author_id)}}">{{$post->user->name}}</a></td>
                                 <td>{{$post->type}}</td>
                                 <td>{{$post->heading}}</td>
                                 <td>{{$post->description}}</td>
